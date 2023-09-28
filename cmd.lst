@@ -1,0 +1,4 @@
+ls images/*.*jpg | sort -r | while read line;do
+  title=$(echo $(basename $line) | sed 's/\([0-9]*\)_[0-9]*_\(.*\)_[0-9.]*x[0-9.]*.jpg/\2 \1/g;s/_/ /g')
+  echo "<img src=\"$line\" data-full=\"$line\" alt=\"$title\" class=\"m-p-g__thumbs-img\"/>"
+done
