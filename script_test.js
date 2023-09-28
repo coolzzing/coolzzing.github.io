@@ -453,12 +453,14 @@
             }, s.prototype._loadFullImgs = function() {
                 for (var t, alt, e, i = 0, n = this._thumbs.length; n > i; i++) 
                     t = this._thumbs[i].getAttribute("data-full")
-                    alt = this._thumbs[i].getAttribute("alt")
                     e = new Image
                     e.src = t
-                    e.alt = alt
                     e.classList.add(this._cssClasses.FULL_IMG)
-                    let div_element = document.createElement('div');
+                    let newDiv = document.createElement("div");
+                    newDiv.innerHTML = this._thumbs[i].getAttribute("alt")
+                    newDiv.setAttribute("id", "imgTitle")
+                    newDiv.style.backgroundColor = "yellow"
+                    newDiv.style.color = "white"
                     div_element.classList.add("m-p-g__fullscreen-alt")
                     this._fullBox.appendChild(e);
                 this._loadFullImgsDone.call(this)
