@@ -455,13 +455,14 @@
                     t = this._thumbs[i].getAttribute("data-full")
                     e = new Image
                     e.src = t
+                    e.alt = this._thumbs[i].getAttribute("alt")
                     e.classList.add(this._cssClasses.FULL_IMG)
-                    let newDiv = document.createElement("div");
-                    newDiv.innerHTML = this._thumbs[i].getAttribute("alt")
-                    newDiv.setAttribute("id", "imgTitle")
-                    newDiv.style.backgroundColor = "yellow"
-                    newDiv.style.color = "white"
-                    div_element.classList.add("m-p-g__fullscreen-alt")
+                    //let newDiv = document.createElement("div");
+                    //newDiv.innerHTML = this._thumbs[i].getAttribute("alt")
+                    //newDiv.setAttribute("id", "imgTitle")
+                    //newDiv.style.backgroundColor = "yellow"
+                    //newDiv.style.color = "white"
+                    //div_element.classList.add("m-p-g__fullscreen-alt")
                     this._fullBox.appendChild(e);
                 this._loadFullImgsDone.call(this)
             }, s.prototype._loadFullImgsDone = function() {
