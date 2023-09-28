@@ -429,7 +429,20 @@
                 }, 25)
             }, s.prototype.init = function() {
                 var t = i.init();
-                this._element.appendChild(t), this._gallery = this._element, this._thumbsBox = this._gallery.querySelector("." + this._cssClasses.THUMBS_BOX), this._thumbsNodeList = this._thumbsBox.querySelectorAll("." + this._cssClasses.THUMB_IMG), this._thumbs = Array.prototype.slice.call(this._thumbsNodeList), this._fullBox = this._gallery.querySelector("." + this._cssClasses.FULL_BOX), this._controls = this._gallery.querySelector("." + this._cssClasses.CONTROLS), this._closeBtn = this._controls.querySelector("." + this._cssClasses.CONTROLS_CLOSE), this._prevBtn = this._controls.querySelector("." + this._cssClasses.CONTROLS_PREV), this._nextBtn = this._controls.querySelector("." + this._cssClasses.CONTROLS_NEXT), this._fullImgsLoaded = !1, this._fullImgOpen = !1, this._bindEvents.call(this), this._loadFullImgs.call(this)
+                this._element.appendChild(t)
+                this._gallery = this._element
+                this._thumbsBox = this._gallery.querySelector("." + this._cssClasses.THUMBS_BOX)
+                this._thumbsNodeList = this._thumbsBox.querySelectorAll("." + this._cssClasses.THUMB_IMG)
+                this._thumbs = Array.prototype.slice.call(this._thumbsNodeList)
+                this._fullBox = this._gallery.querySelector("." + this._cssClasses.FULL_BOX)
+                this._controls = this._gallery.querySelector("." + this._cssClasses.CONTROLS)
+                this._closeBtn = this._controls.querySelector("." + this._cssClasses.CONTROLS_CLOSE)
+                this._prevBtn = this._controls.querySelector("." + this._cssClasses.CONTROLS_PREV)
+                this._nextBtn = this._controls.querySelector("." + this._cssClasses.CONTROLS_NEXT)
+                this._fullImgsLoaded = !1
+                this._fullImgOpen = !1
+                this._bindEvents.call(this)
+                this._loadFullImgs.call(this)
             }, s.prototype._bindEvents = function() {
                 for (var t = 0, e = this._thumbs.length; e > t; t++) this._thumbs[t].addEventListener("click", this._handleThumbClick.bind(this)), this._thumbs[t].addEventListener("mouseover", this._handleThumbHover.bind(this));
                 this._closeBtn.addEventListener("click", this._handleClose.bind(this)), this._nextBtn.addEventListener("click", this._handleNext.bind(this)), this._prevBtn.addEventListener("click", this._handlePrev.bind(this)), window.addEventListener("scroll", this._handleScroll.bind(this))
@@ -438,16 +451,30 @@
             }, 25), s.prototype._handleResize = function() {
                 this._resetFullImg.call(this)
             }, s.prototype._loadFullImgs = function() {
-                for (var t, e, i = 0, n = this._thumbs.length; n > i; i++) t = this._thumbs[i].getAttribute("data-full"), e = new Image, e.src = t, e.classList.add(this._cssClasses.FULL_IMG), this._fullBox.appendChild(e);
+                for (var t, alt, e, i = 0, n = this._thumbs.length; n > i; i++) 
+                    t = this._thumbs[i].getAttribute("data-full")
+                    alt = this._thumbs[i].getAttribute("alt")
+                    e = new Image
+                    e.src = t
+                    e.alt = alt
+                    e.classList.add(this._cssClasses.FULL_IMG)
+                    let div_element = document.createElement('div');
+                    div_element.classList.add("m-p-g__fullscreen-alt")
+                    this._fullBox.appendChild(e);
                 this._loadFullImgsDone.call(this)
             }, s.prototype._loadFullImgsDone = function() {
                 var e = t(this._fullBox);
+                //var d = t(this.div_element);
                 e.on("done", function(t) {
                     var e = t.images;
-                    this._fullImgs = [], this._fullImgDimensions = [], this._fullImgsTransforms = [];
+                    this._fullImgs = []
+                    this._fullImgDimensions = []
+                    this._fullImgsTransforms = [];
                     for (var i = 0, n = e.length; n > i; i++) {
                         var s = e[i].img.getBoundingClientRect();
-                        this._fullImgs.push(e[i].img), this._positionFullImgs.call(this, e[i].img, i), this._fullImgDimensions.push(s)
+                        this._fullImgs.push(e[i].img)
+                        this._positionFullImgs.call(this, e[i].img, i)
+                        this._fullImgDimensions.push(s)
                     }
                     this._fullImgsLoaded = !0
                 }.bind(this))
@@ -477,7 +504,12 @@
             }, s.prototype._transformThumbSetup = function(t, e) {
                 this._setupComplete = !1, this._thumb = t.target, this._thumbIndex = this._thumbs.indexOf(this._thumb), this._fullImg = this._fullImgs[this._thumbIndex], this._setupComplete = !0, e && e()
             }, s.prototype._activateFullImg = function() {
-                this._thumb.classList.add("hide"), this._fullImg.classList.add("active"), this._fullImg.style[r] = "translate3d(0,0,0)", this._fullImgOpen = !0, this._fullImgs.forEach(function(t) {
+                this._thumb.classList.add("hide")
+                this._fullImg.classList.add("active")
+                this._fullImg.style[r] = "translate3d(0,0,0)"
+                this._fullImgOpen = !0
+
+                this._fullImgs.forEach(function(t) {
                     t.classList.contains("active") || t.classList.add("almost-active")
                 })
             }, s.prototype._activateFullBox = function() {
@@ -488,11 +520,17 @@
                 this._fullImgOpen && this._closeFullImg.call(this)
             }, s.prototype._closeFullImg = function() {
                 var t = function() {
-                    this._fullBox.classList.remove("active"), this._controls.classList.remove("active"), this._fullImg.style[r] = this._fullImgsTransforms[this._thumbIndex], this._thumb.classList.remove("hide"), this._fullImgs.forEach(function(t) {
+                    this._fullBox.classList.remove("active")
+                    this._controls.classList.remove("active")
+                    this._fullImg.style[r] = this._fullImgsTransforms[this._thumbIndex]
+                    this._thumb.classList.remove("hide")
+                    this._fullImgs.forEach(function(t) {
                         t.classList.remove("almost-active")
                     });
                     var t = function() {
-                        this._fullImg.classList.remove("active"), this._fullImg.removeEventListener(c, t), this._fullImgOpen = !1
+                        this._fullImg.classList.remove("active")
+                        this._fullImg.removeEventListener(c, t)
+                        this._fullImgOpen = !1
                     }.bind(this);
                     this._fullImg.addEventListener(c, t), this._enableScroll()
                 }.bind(this);
