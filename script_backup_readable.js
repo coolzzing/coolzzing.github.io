@@ -657,6 +657,7 @@
                     newDiv.innerHTML = e.alt,
                     newDiv.classList.add(this._cssClasses.FULL_IMG_ALT),
                     this._fullBox.appendChild(newDiv);
+                console.log(this._fullBox),
                 this._loadFullImgsDone.call(this)
             }
             ,
@@ -664,14 +665,14 @@
                 var e = t(this._fullBox);
                 e.on("done", function(t) {
                     var e = t.images;
+                    console.log(t),
+                    console.log(e),
                     this._fullImgs = [],
-                    this._fullImgsAlt = [],
                     this._fullImgDimensions = [],
                     this._fullImgsTransforms = [];
                     for (var i = 0, n = e.length; n > i; i++) {
                         var s = e[i].img.getBoundingClientRect();
                         this._fullImgs.push(e[i].img),
-                        this._fullImgsAlt.push(e[i].img.nextElementSibling)
                         this._positionFullImgs.call(this, e[i].img, i),
                         this._fullImgDimensions.push(s)
                     }
@@ -705,6 +706,8 @@
             ,
             s.prototype._resetFullImg = function() {
                 this._fullImgsTransforms = [];
+                console.log(this._fullImgs.length);
+                console.log(this._fullImgs);
                 for (var t = 0, e = this._fullImgs.length; e > t; t++) {
                     ({
                         width: this._fullImgDimensions[t].width,
@@ -725,7 +728,6 @@
             s.prototype._handleThumbClick = function(t) {
                 this._thumb != t.target && (this._thumb = t.target,
                 this._thumbIndex = this._thumbs.indexOf(this._thumb),
-                this._fullImgAlt = this._fullImgsAlt[this._thumbIndex],
                 this._fullImg = this._fullImgs[this._thumbIndex]),
                 this._setupComplete && this._fullImgsLoaded && !this._fullImgOpen && (this._activateFullImg.call(this),
                 this._activateControls.call(this),
@@ -738,7 +740,6 @@
                 this._thumb = t.target,
                 this._thumbIndex = this._thumbs.indexOf(this._thumb),
                 this._fullImg = this._fullImgs[this._thumbIndex],
-                this._fullImgAlt = this._fullImgsAlt[this._thumbIndex],
                 this._setupComplete = !0,
                 e && e()
             }
@@ -746,15 +747,11 @@
             s.prototype._activateFullImg = function() {
                 this._thumb.classList.add("hide"),
                 this._fullImg.classList.add("active"),
-                this._fullImgAlt.classList.add("active"),
                 this._fullImg.style[r] = "translate3d(0,0,0)",
                 this._fullImgOpen = !0,
-                this._fullImgsAlt.forEach(function(t) {
-                    t.classList.contains("active") || t.classList.add("almost-active")
-                }),
                 this._fullImgs.forEach(function(t) {
                     t.classList.contains("active") || t.classList.add("almost-active")
-                })                
+                })
             }
             ,
             s.prototype._activateFullBox = function() {
@@ -775,16 +772,11 @@
                     this._controls.classList.remove("active"),
                     this._fullImg.style[r] = this._fullImgsTransforms[this._thumbIndex],
                     this._thumb.classList.remove("hide"),
-                    this._fullImgsAlt.forEach(function(t) {
-                        t.classList.remove("almost-active")
-                    }),
                     this._fullImgs.forEach(function(t) {
                         t.classList.remove("almost-active")
-                    })
-;
+                    });
                     var t = function() {
                         this._fullImg.classList.remove("active"),
-                        this._fullImgAlt.classList.remove("active"),
                         this._fullImg.removeEventListener(c, t),
                         this._fullImgOpen = !1
                     }
@@ -807,24 +799,14 @@
             s.prototype._changeImg = function(t) {
                 this._thumbIndex = this._fullImgs.indexOf(this._fullImg),
                 "next" === t ? this._thumbIndex += 1 : this._thumbIndex -= 1,
-                //this._newFullImg = "next" === t ? this._fullImg.nextElementSibling : this._fullImg.previousElementSibling,
-                //this._newFullImg = "next" === t ? this._fullImgs[this._thumbIndex] : this._fullImgs[this._thumbIndex],
-                this._newFullImg = this._fullImgs[this._thumbIndex],
-                //this._newFullImgAlt = "next" === t ? this._fullImgsAlt[this._thumbIndex] : this._fullImgsAlt[this._thumbIndex],
-                this._newFullImgAlt = this._fullImgsAlt[this._thumbIndex],
+                this._newFullImg = "next" === t ? this._fullImg.nextElementSibling : this._fullImg.previousElementSibling,
                 this._newFullImg && "IMG" === this._newFullImg.nodeName || (this._newFullImg = "next" === t ? this._newFullImg = this._fullImgs[0] : this._newFullImg = this._fullImgs[this._fullImgs.length - 1],
                 "next" === t ? this._thumbIndex = 0 : this._thumbIndex = this._fullImgs.length - 1),
-                this._newFullImgAlt && "DIV" === this._newFullImgAlt.nodeName || (this._newFullImgAlt = "next" === t ? this._newFullImgAlt = this._fullImgsAlt[0] : this._newFullImgAlt = this._fullImgsAlt[this._fullImgsAlt.length - 1],
-                "next" === t ? this._thumbIndex = 0 : this._thumbIndex = this._fullImgsAlt.length - 1),
                 this._newFullImg.style[r] = "translate3d(0,0,0)",
                 this._fullImg.classList.remove("active"),
-                this._fullImgAlt.classList.remove("active"),
-                this._fullImgAlt.classList.add("almost-active"),
                 this._fullImg.style[r] = this._fullImgsTransforms[this._thumbIndex - 1],
                 this._fullImg = this._newFullImg,
-                this._fullImgAlt = this._newFullImgAlt,
-                this._fullImg.classList.add("active"),
-                this._fullImgAlt.classList.add("active")
+                this._fullImg.classList.add("active")
             }
             ,
             s.prototype._disableScroll = function() {

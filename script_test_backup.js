@@ -481,7 +481,7 @@
                         newDiv.setAttribute("id", "imgTitle")
                         newDiv.classList.add(this._cssClasses.FULL_IMG_ALT)
                         this._fullBox.appendChild(e);
-                        //this._fullBox.appendChild(newDiv);
+                        this._fullBox.appendChild(newDiv);
                     this._loadFullImgsDone.call(this)
                 },
                  s.prototype._loadFullImgsDone = function() {
