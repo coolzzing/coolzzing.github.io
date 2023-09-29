@@ -345,213 +345,283 @@
     }],
     6: [function(t, e, i) {
         ! function(n, s) {
-            "function" == typeof define && define.amd ? define(s) : "object" == typeof i ? e.exports = s(t("imagesLoaded"), t("./vendor/google-image-layout"), t("./create-controls")) : n.Gallery = s(window.imagesLoaded, window.GoogleImageLayout)
-        }(this, function(t, e, i) {
-            "use strict";
+            "function" == typeof define &&
+             define.amd ? define(s) : "object" == typeof i ? e.exports =
+              s(t("imagesLoaded"), 
+                t("./vendor/google-image-layout"), 
+                t("./create-controls")) : n.Gallery = s(window.imagesLoaded, window.GoogleImageLayout)
+        }(
+            this, function(t, e, i) {
+                "use strict";
 
-            function n(t, e, i) {
-                var n;
-                return function() {
-                    var s = this,
-                        o = arguments,
-                        r = function() {
-                            n = null, i || t.apply(s, o)
-                        },
-                        l = i && !n;
+                function n(t, e, i) {
+                    var n;
+                    return function() {
+                        var s = this,
+                            o = arguments,
+                            r = function() {n = null, i || t.apply(s, o)},
+                            l = i && !n;
                     clearTimeout(n), n = setTimeout(r, e), l && t.apply(s, o)
-                }
-            }
-            var s = function(t) {
-                    this._element = t, this._layout()
-                },
-                o = !1,
-                r = "transform",
-                l = "Webkit Moz ms".split(" "),
-                h = "",
-                a = document.createElement("div");
-            if (void 0 !== a.style.transform && (o = !0), o === !1)
-                for (var u = 0; u < l.length; u++)
-                    if (void 0 !== a.style[l[u] + "Transform"]) {
-                        h = l[u], r = h + "Transform", o = !0;
-                        break
-                    } var c, f = {
-                    transition: "transitionend",
-                    WebkitTransition: "webkitTransitionEnd",
-                    MozTransition: "transitionend",
-                    OTransition: "otransitionend"
-                },
-                a = document.createElement("div");
-            for (var m in f)
-                if ("undefined" != typeof a.style[m]) {
-                    c = f[m];
-                    break
-                } return s.prototype._cssClasses = {
-                GALLERY: "m-p-g",
-                THUMBS_BOX: "m-p-g__thumbs",
-                THUMB_IMG: "m-p-g__thumbs-img",
-                FULL_BOX: "m-p-g__fullscreen",
-                FULL_IMG: "m-p-g__fullscreen-img",
-                CONTROLS: "m-p-g__controls",
-                CONTROLS_CLOSE: "m-p-g__controls-close",
-                CONTROLS_NEXT: "m-p-g__controls-arrow--next",
-                CONTROLS_PREV: "m-p-g__controls-arrow--prev"
-            }, s.prototype._layout = function() {
-                var i = this,
-                    s = t(document.querySelector("div[data-google-image-layout]"));
-                s.on("progress", function(t, e) {
-                    e.img.setAttribute("data-width", e.img.offsetWidth), e.img.setAttribute("data-height", e.img.offsetHeight)
-                }), s.on("done", function(t) {
-                    (new e).init({
-                        after: function() {
-                            i.init()
-                        }
-                    })
-                }), s.on("fail", function(t) {
-                    var e = i._element,
-                        n = document.createElement("div");
-                    n.className = "m-p-g__alertBox";
-                    var s = document.createElement("h2");
-                    s.innerHTML = "Error";
-                    var o = document.createElement("p");
-                    n.appendChild(s), n.appendChild(o), e.appendChild(n);
-                    var r = [];
-                    t.images.forEach(function(t) {
-                        t.isLoaded || r.push(t.img.currentSrc)
-                    }), o.innerHTML = "Failed to load: " + r
-                }), window.onresize = n(function() {
-                    (new e).init({
-                        after: function() {
-                            setTimeout(function() {
-                                i._handleResize()
-                            }, 500)
-                        }
-                    })
-                }, 25)
-            }, s.prototype.init = function() {
-                var t = i.init();
-                this._element.appendChild(t)
-                this._gallery = this._element
-                this._thumbsBox = this._gallery.querySelector("." + this._cssClasses.THUMBS_BOX)
-                this._thumbsNodeList = this._thumbsBox.querySelectorAll("." + this._cssClasses.THUMB_IMG)
-                this._thumbs = Array.prototype.slice.call(this._thumbsNodeList)
-                this._fullBox = this._gallery.querySelector("." + this._cssClasses.FULL_BOX)
-                this._controls = this._gallery.querySelector("." + this._cssClasses.CONTROLS)
-                this._closeBtn = this._controls.querySelector("." + this._cssClasses.CONTROLS_CLOSE)
-                this._prevBtn = this._controls.querySelector("." + this._cssClasses.CONTROLS_PREV)
-                this._nextBtn = this._controls.querySelector("." + this._cssClasses.CONTROLS_NEXT)
-                this._fullImgsLoaded = !1
-                this._fullImgOpen = !1
-                this._bindEvents.call(this)
-                this._loadFullImgs.call(this)
-            }, s.prototype._bindEvents = function() {
-                for (var t = 0, e = this._thumbs.length; e > t; t++) this._thumbs[t].addEventListener("click", this._handleThumbClick.bind(this)), this._thumbs[t].addEventListener("mouseover", this._handleThumbHover.bind(this));
-                this._closeBtn.addEventListener("click", this._handleClose.bind(this)), this._nextBtn.addEventListener("click", this._handleNext.bind(this)), this._prevBtn.addEventListener("click", this._handlePrev.bind(this)), window.addEventListener("scroll", this._handleScroll.bind(this))
-            }, s.prototype._handleScroll = n(function() {
-                this._resetFullImg.call(this)
-            }, 25), s.prototype._handleResize = function() {
-                this._resetFullImg.call(this)
-            }, s.prototype._loadFullImgs = function() {
-                for (var t, alt, e, i = 0, n = this._thumbs.length; n > i; i++) 
-                    t = this._thumbs[i].getAttribute("data-full")
-                    e = new Image
-                    e.src = t
-                    e.alt = this._thumbs[i].getAttribute("alt")
-                    e.classList.add(this._cssClasses.FULL_IMG)
-                    //let newDiv = document.createElement("div");
-                    //newDiv.innerHTML = this._thumbs[i].getAttribute("alt")
-                    //newDiv.setAttribute("id", "imgTitle")
-                    //newDiv.style.backgroundColor = "yellow"
-                    //newDiv.style.color = "white"
-                    //div_element.classList.add("m-p-g__fullscreen-alt")
-                    this._fullBox.appendChild(e);
-                this._loadFullImgsDone.call(this)
-            }, s.prototype._loadFullImgsDone = function() {
-                var e = t(this._fullBox);
-                //var d = t(this.div_element);
-                e.on("done", function(t) {
-                    var e = t.images;
-                    this._fullImgs = []
-                    this._fullImgDimensions = []
-                    this._fullImgsTransforms = [];
-                    for (var i = 0, n = e.length; n > i; i++) {
-                        var s = e[i].img.getBoundingClientRect();
-                        this._fullImgs.push(e[i].img)
-                        this._positionFullImgs.call(this, e[i].img, i)
-                        this._fullImgDimensions.push(s)
                     }
-                    this._fullImgsLoaded = !0
-                }.bind(this))
-            }, s.prototype._positionFullImgs = function(t, e, i) {
-                var n = this._transformFullImg(t, this._thumbs[e]);
-                this._fullImgsTransforms.push(n), t.style.marginTop = -t.height / 2 + "px", t.style.marginLeft = -t.width / 2 + "px", i !== !1 && (t.style[r] = n)
-            }, s.prototype._transformFullImg = function(t, e, i) {
-                var n, s, o, r;
-                t = t.getBoundingClientRect(), e = e.getBoundingClientRect(), i ? (n = (e.width / i.width).toFixed(3), s = (e.height / i.height).toFixed(3), o = e.left - i.left + i.width / 2, r = e.top - i.top + i.height / 2) : (n = (e.width / t.width).toFixed(3), s = (e.height / t.height).toFixed(3), o = e.left - t.left + t.width / 2, r = e.top - t.top + t.height / 2);
-                var l = "translate(" + o + "px," + r + "px) scale(" + n + "," + s + ")";
-                return l
-            }, s.prototype._resetFullImg = function() {
-                this._fullImgsTransforms = [];
-                for (var t = 0, e = this._fullImgs.length; e > t; t++) {
-                    ({
-                        width: this._fullImgDimensions[t].width,
-                        height: this._fullImgDimensions[t].height,
-                        left: this._fullImgDimensions[t].left,
-                        top: this._fullImgDimensions[t].top
-                    });
-                    t === this._thumbIndex && this._fullImgOpen ? (this._fullImgs[t].removeAttribute("style"), this._positionFullImgs.call(this, this._fullImgs[t], t, !1)) : (this._fullImgs[t].removeAttribute("style"), this._positionFullImgs.call(this, this._fullImgs[t], t))
                 }
-            }, s.prototype._handleThumbHover = function(t) {
-                this._fullImgsLoaded && !this._fullImgOpen && this._transformThumbSetup.call(this, t)
-            }, s.prototype._handleThumbClick = function(t) {
-                this._thumb != t.target && (this._thumb = t.target, this._thumbIndex = this._thumbs.indexOf(this._thumb), this._fullImg = this._fullImgs[this._thumbIndex]), this._setupComplete && this._fullImgsLoaded && !this._fullImgOpen && (this._activateFullImg.call(this), this._activateControls.call(this), this._activateFullBox.call(this), this._disableScroll())
-            }, s.prototype._transformThumbSetup = function(t, e) {
-                this._setupComplete = !1, this._thumb = t.target, this._thumbIndex = this._thumbs.indexOf(this._thumb), this._fullImg = this._fullImgs[this._thumbIndex], this._setupComplete = !0, e && e()
-            }, s.prototype._activateFullImg = function() {
-                this._thumb.classList.add("hide")
-                this._fullImg.classList.add("active")
-                this._fullImg.style[r] = "translate3d(0,0,0)"
-                this._fullImgOpen = !0
+                var s = function(t) {this._element = t, this._layout()},
+                    o = !1,
+                    r = "transform",
+                    l = "Webkit Moz ms".split(" "),
+                    h = "",
+                    a = document.createElement("div");
+                if (void 0 !== a.style.transform && (o = !0), o === !1)
+                    for (var u = 0; u < l.length; u++)
+                        if (void 0 !== a.style[l[u] + "Transform"]) {
+                            h = l[u], r = h + "Transform", o = !0;
+                            break
+                        } var c, 
+                              f = {
+                                    transition: "transitionend",
+                                    WebkitTransition: "webkitTransitionEnd",
+                                    MozTransition: "transitionend",
+                                    OTransition: "otransitionend"
+                                  },
+                              a = document.createElement("div");
+                for (var m in f)
+                    if ("undefined" != typeof a.style[m]) {
+                        c = f[m];
+                        break
+                    } 
+                return s.prototype._cssClasses = {
+                    GALLERY: "m-p-g",
+                    THUMBS_BOX: "m-p-g__thumbs",
+                    THUMB_IMG: "m-p-g__thumbs-img",
+                    FULL_BOX: "m-p-g__fullscreen",
+                    FULL_IMG: "m-p-g__fullscreen-img",
+                    FULL_IMG_ALT: "m-p-g__fullscreen-alt",
+                    CONTROLS: "m-p-g__controls",
+                    CONTROLS_CLOSE: "m-p-g__controls-close",
+                    CONTROLS_NEXT: "m-p-g__controls-arrow--next",
+                    CONTROLS_PREV: "m-p-g__controls-arrow--prev"
+                },
+                 s.prototype._layout = function() {
+                    var i = this,
+                        s = t(document.querySelector("div[data-google-image-layout]"));
+                    s.on("progress", function(t, e) {
+                        e.img.setAttribute("data-width", e.img.offsetWidth), e.img.setAttribute("data-height", e.img.offsetHeight)
+                    }),
+                     s.on("done", function(t) {
+                        (new e).init({
+                                        after: function() {i.init()}
+                                    })
+                    }),
+                     s.on("fail", function(t) {
+                        var e = i._element,
+                            n = document.createElement("div");
+                        n.className = "m-p-g__alertBox";
+                        var s = document.createElement("h2");
+                        s.innerHTML = "Error";
+                        var o = document.createElement("p");
+                            n.appendChild(s),
+                             n.appendChild(o),
+                              e.appendChild(n);
+                        var r = [];
+                        t.images.forEach(function(t) {
+                            t.isLoaded || r.push(t.img.currentSrc)
+                        }),
+                         o.innerHTML = "Failed to load: " + r
+                      }),
+                       window.onresize = n(function() {
+                            (new e).init({
+                                after: function() {
+                                    setTimeout(function() {
+                                        i._handleResize()
+                                        }, 500)
+                                }
+                            })
+                          }, 25)
+                 },
+                 s.prototype.init = function() {
+                    var t = i.init();
+                    this._element.appendChild(t)
+                    this._gallery = this._element
+                    this._thumbsBox = this._gallery.querySelector("." + this._cssClasses.THUMBS_BOX)
+                    this._thumbsNodeList = this._thumbsBox.querySelectorAll("." + this._cssClasses.THUMB_IMG)
+                    this._thumbs = Array.prototype.slice.call(this._thumbsNodeList)
+                    this._fullBox = this._gallery.querySelector("." + this._cssClasses.FULL_BOX)
+                    this._controls = this._gallery.querySelector("." + this._cssClasses.CONTROLS)
+                    this._closeBtn = this._controls.querySelector("." + this._cssClasses.CONTROLS_CLOSE)
+                    this._prevBtn = this._controls.querySelector("." + this._cssClasses.CONTROLS_PREV)
+                    this._nextBtn = this._controls.querySelector("." + this._cssClasses.CONTROLS_NEXT)
+                    this._fullImgsLoaded = !1
+                    this._fullImgOpen = !1
+                    this._bindEvents.call(this)
+                    this._loadFullImgs.call(this)
+                },
+                 s.prototype._bindEvents = function() {
+                    for (var t = 0, e = this._thumbs.length; e > t; t++) 
+                        this._thumbs[t].addEventListener("click", this._handleThumbClick.bind(this)),
+                         this._thumbs[t].addEventListener("mouseover", this._handleThumbHover.bind(this));
+                    this._closeBtn.addEventListener("click", this._handleClose.bind(this)),
+                     this._nextBtn.addEventListener("click", this._handleNext.bind(this)),
+                      this._prevBtn.addEventListener("click", this._handlePrev.bind(this)),
+                       window.addEventListener("scroll", this._handleScroll.bind(this))
+                },
+                 s.prototype._handleScroll = n(function() {
+                    this._resetFullImg.call(this)
+                  }, 25),
+                 s.prototype._handleResize = function() {
+                        this._resetFullImg.call(this)
+                },
+                 s.prototype._loadFullImgs = function() {
+                    for (var t, alt, e, newDiv, i = 0, n = this._thumbs.length; n > i; i++) 
+                        t = this._thumbs[i].getAttribute("data-full")
+                        e = new Image
+                        e.src = t
+                        e.alt = this._thumbs[i].getAttribute("alt")
+                        e.classList.add(this._cssClasses.FULL_IMG)
+                        newDiv = document.createElement("div")
+                        newDiv.innerHTML = e.alt
+                        newDiv.setAttribute("id", "imgTitle")
+                        newDiv.classList.add(this._cssClasses.FULL_IMG_ALT)
+                        this._fullBox.appendChild(e);
+                        //this._fullBox.appendChild(newDiv);
+                    this._loadFullImgsDone.call(this)
+                },
+                 s.prototype._loadFullImgsDone = function() {
+                    var e = t(this._fullBox);
+                    e.on("done", function(t) {
+                        var e = t.images;
+                        console.log(t)
+                        this._fullImgs = []
+                        this._fullImgDimensions = []
+                        this._fullImgsTransforms = [];
+                        for (var i = 0, n = e.length; n > i; i++) {
+                            var s = e[i].img.getBoundingClientRect();
+                            this._fullImgs.push(e[i].img)
+                            this._positionFullImgs.call(this, e[i].img, i)
+                            this._fullImgDimensions.push(s)
+                        }
+                        this._fullImgsLoaded = !0
+                    }.bind(this))
+                }, 
+                 s.prototype._positionFullImgs = function(t, e, i) {
+                    var n = this._transformFullImg(t, this._thumbs[e]);
+                    this._fullImgsTransforms.push(n),
+                     t.style.marginTop = -t.height / 2 + "px",
+                      t.style.marginLeft = -t.width / 2 + "px",
+                       i !== !1 && (t.style[r] = n)
+                },
+                 s.prototype._transformFullImg = function(t, e, i) {
+                    var n, s, o, r;
+                    t = t.getBoundingClientRect(),
+                     e = e.getBoundingClientRect(),
+                      i ? (n = (e.width / i.width).toFixed(3),
+                       s = (e.height / i.height).toFixed(3),
+                        o = e.left - i.left + i.width / 2,
+                         r = e.top - i.top + i.height / 2) : (n = (e.width / t.width).toFixed(3),
+                          s = (e.height / t.height).toFixed(3),
+                           o = e.left - t.left + t.width / 2,
+                            r = e.top - t.top + t.height / 2);
+                    var l = "translate(" + o + "px," + r + "px) scale(" + n + "," + s + ")";
+                    return l
+                },
+                 s.prototype._resetFullImg = function() {
+                    this._fullImgsTransforms = [];
+                    console.log(this._fullImgs.length),console.log(this._fullImgs)
+                    for (var t = 0, e = this._fullImgs.length; e > t; t++) {
+                        ({
+                            width: this._fullImgDimensions[t].width,
+                            height: this._fullImgDimensions[t].height,
+                            left: this._fullImgDimensions[t].left,
+                            top: this._fullImgDimensions[t].top
+                        });
+                        t === this._thumbIndex && this._fullImgOpen ? (this._fullImgs[t].removeAttribute("style"),
+                         this._positionFullImgs.call(this, this._fullImgs[t], t, !1)) : (this._fullImgs[t].removeAttribute("style"),
+                          this._positionFullImgs.call(this, this._fullImgs[t], t))
+                    }
+                },
+                 s.prototype._handleThumbHover = function(t) {
+                    this._fullImgsLoaded && !this._fullImgOpen && this._transformThumbSetup.call(this, t)
+                },
+                 s.prototype._handleThumbClick = function(t) {
+                    this._thumb != t.target && (this._thumb = t.target,
+                                                 this._thumbIndex = this._thumbs.indexOf(this._thumb),
+                                                  this._fullImg = this._fullImgs[this._thumbIndex]),
+                                                   this._setupComplete && this._fullImgsLoaded && !this._fullImgOpen && (this._activateFullImg.call(this),
+                                                    this._activateControls.call(this),
+                                                     this._activateFullBox.call(this),
+                                                      this._disableScroll())
+                },
+                 s.prototype._transformThumbSetup = function(t, e) {
+                    this._setupComplete = !1,
+                     this._thumb = t.target,
+                      this._thumbIndex = this._thumbs.indexOf(this._thumb),
+                       this._fullImg = this._fullImgs[this._thumbIndex],
+                        this._setupComplete = !0, e && e()
+                },
+                 s.prototype._activateFullImg = function() {
+                    this._thumb.classList.add("hide")
+                    this._fullImg.classList.add("active")
+                    this._fullImg.style[r] = "translate3d(0,0,0)"
+                    this._fullImgOpen = !0
 
-                this._fullImgs.forEach(function(t) {
-                    t.classList.contains("active") || t.classList.add("almost-active")
-                })
-            }, s.prototype._activateFullBox = function() {
-                this._fullBox.classList.add("active")
-            }, s.prototype._activateControls = function() {
-                this._controls.classList.add("active")
-            }, s.prototype._handleClose = function() {
-                this._fullImgOpen && this._closeFullImg.call(this)
-            }, s.prototype._closeFullImg = function() {
-                var t = function() {
-                    this._fullBox.classList.remove("active")
-                    this._controls.classList.remove("active")
-                    this._fullImg.style[r] = this._fullImgsTransforms[this._thumbIndex]
-                    this._thumb.classList.remove("hide")
                     this._fullImgs.forEach(function(t) {
-                        t.classList.remove("almost-active")
-                    });
+                        t.classList.contains("active") || t.classList.add("almost-active")
+                    })
+                },
+                 s.prototype._activateFullBox = function() {
+                    this._fullBox.classList.add("active")
+                },
+                 s.prototype._activateControls = function() {
+                    this._controls.classList.add("active")
+                },
+                 s.prototype._handleClose = function() {
+                    this._fullImgOpen && this._closeFullImg.call(this)
+                },
+                 s.prototype._closeFullImg = function() {
                     var t = function() {
-                        this._fullImg.classList.remove("active")
-                        this._fullImg.removeEventListener(c, t)
-                        this._fullImgOpen = !1
+                        this._fullBox.classList.remove("active")
+                        this._controls.classList.remove("active")
+                        this._fullImg.style[r] = this._fullImgsTransforms[this._thumbIndex]
+                        this._thumb.classList.remove("hide")
+                        this._fullImgs.forEach(function(t) {
+                            t.classList.remove("almost-active")
+                        });
+                        var t = function() {
+                            this._fullImg.classList.remove("active")
+                            this._fullImg.removeEventListener(c, t)
+                            this._fullImgOpen = !1
+                        }.bind(this);
+                        this._fullImg.addEventListener(c, t), this._enableScroll()
                     }.bind(this);
-                    this._fullImg.addEventListener(c, t), this._enableScroll()
-                }.bind(this);
-                window.requestAnimationFrame(t)
-            }, s.prototype._handleNext = function() {
-                this._fullImgOpen && this._changeImg.call(this, "next")
-            }, s.prototype._handlePrev = function() {
-                this._fullImgOpen && this._changeImg.call(this, "prev")
-            }, s.prototype._changeImg = function(t) {
-                this._thumbIndex = this._fullImgs.indexOf(this._fullImg), "next" === t ? this._thumbIndex += 1 : this._thumbIndex -= 1, this._newFullImg = "next" === t ? this._fullImg.nextElementSibling : this._fullImg.previousElementSibling, this._newFullImg && "IMG" === this._newFullImg.nodeName || (this._newFullImg = "next" === t ? this._newFullImg = this._fullImgs[0] : this._newFullImg = this._fullImgs[this._fullImgs.length - 1], "next" === t ? this._thumbIndex = 0 : this._thumbIndex = this._fullImgs.length - 1), this._newFullImg.style[r] = "translate3d(0,0,0)", this._fullImg.classList.remove("active"), this._fullImg.style[r] = this._fullImgsTransforms[this._thumbIndex - 1], this._fullImg = this._newFullImg, this._fullImg.classList.add("active")
-            }, s.prototype._disableScroll = function() {
-                function t(t) {
-                    t = t || window.event, t.preventDefault && t.preventDefault(), t.returnValue = !1
-                }
-                window.onwheel = t, window.ontouchmove = t
-            }, s.prototype._enableScroll = function() {
-                window.onwheel = null, window.ontouchmove = null
-            }, s
+                    window.requestAnimationFrame(t)
+                },
+                 s.prototype._handleNext = function() {
+                    this._fullImgOpen && this._changeImg.call(this, "next")
+                },
+                 s.prototype._handlePrev = function() {
+                    this._fullImgOpen && this._changeImg.call(this, "prev")
+                },
+                 s.prototype._changeImg = function(t) {
+                    this._thumbIndex = this._fullImgs.indexOf(this._fullImg),
+                     "next" === t ? this._thumbIndex += 1 : this._thumbIndex -= 1,
+                      this._newFullImg = "next" === t ? this._fullImg.nextElementSibling : this._fullImg.previousElementSibling,
+                       this._newFullImg && "IMG" === this._newFullImg.nodeName || 
+                       (this._newFullImg = "next" === t ? this._newFullImg = this._fullImgs[0] : this._newFullImg = this._fullImgs[this._fullImgs.length - 1],
+                        "next" === t ? this._thumbIndex = 0 : this._thumbIndex = this._fullImgs.length - 1),
+                         this._newFullImg.style[r] = "translate3d(0,0,0)",
+                          this._fullImg.classList.remove("active"),
+                           this._fullImg.style[r] = this._fullImgsTransforms[this._thumbIndex - 1],
+                            this._fullImg = this._newFullImg,
+                             this._fullImg.classList.add("active")
+                },
+                 s.prototype._disableScroll = function() {
+                    function t(t) {
+                        t = t || window.event, t.preventDefault && t.preventDefault(), t.returnValue = !1
+                    }
+                    window.onwheel = t, window.ontouchmove = t
+                },
+                 s.prototype._enableScroll = function() {
+                    window.onwheel = null, window.ontouchmove = null
+                },
+                 s
         })
     }, {
         "./create-controls": 4,

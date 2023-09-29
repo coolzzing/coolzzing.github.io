@@ -69,17 +69,6 @@
   opacity: 1 !important;
   transition: transform 0.5s cubic-bezier(0.23, 1, 0.32, 1), opacity 0.5s ease-out;
 }
-.m-p-g__fullscreen-img.active::after {
-  content: attr(alt); /* Use the alt attribute as content */
-  position: absolute;
-  bottom: 10px; /* Adjust the position as needed */
-  left: 10px; /* Adjust the position as needed */
-  background-color: rgba(0, 0, 0, 0.7); /* Background color for the alt text */
-  color: white; /* Text color for the alt text */
-  padding: 5px 10px; /* Adjust padding as needed */
-  font-size: 14px; /* Adjust font size as needed */
-  z-index: 1; /* Ensure the alt text is above the image */
-}
 .m-p-g__fullscreen-img.almost-active {
   opacity: 0;
   transform: translate3d(0, 0, 0) !important;
