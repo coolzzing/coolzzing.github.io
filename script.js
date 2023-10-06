@@ -653,7 +653,6 @@
                     e.classList.add(this._cssClasses.FULL_IMG),
                     this._fullBox.appendChild(e),
                     newDiv = document.createElement("div"),
-                    newDiv.setAttribute("id", "imgTitle"),
                     newDiv.innerHTML = e.alt,
                     newDiv.classList.add(this._cssClasses.FULL_IMG_ALT),
                     this._fullBox.appendChild(newDiv);
