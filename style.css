@@ -1,4 +1,4 @@
-/*------------------------------------*\
+  /*------------------------------------*\
     MATERIAL PHOTO GALLERY
 \*------------------------------------*/
 .m-p-g {
@@ -84,9 +84,10 @@
     left: 50%;
     transform: translateX(-50%);
     z-index: 1;
-    margin: 2em auto
+    margin: 2em auto;
+    visibility: hidden;
 }
-.m-p-g__fullscreen-alt.active {
+.m-p-g__fullscreen.active .m-p-g__fullscreen-alt.active {
   visibility: visible;
   opacity: 1 !important;
 }
