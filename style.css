@@ -233,13 +233,14 @@ h2 {
 }
 .news1 
 {
+    margin-top: 11px;
+    margin-bottom: 11px;
     text-align: center;
     font-size: 22px;
     color: #737373;
     white-space: pre-line;
     z-index: 1;
     font-family: 'Abel', sans-serif; /* Apply the Abel font */
-    margin-top: 0; /* Adjust the top margin */
 }
 @font-face {
   font-family: 'Abel';
