@@ -231,7 +231,38 @@ h2 {
   z-index: 1;
   font-family: 'Abel', sans-serif; /* Apply the Abel font */
 }
-.news1 
+.news1 {
+  text-align: center;
+  font-size: 22px;
+  color: #737373;
+  white-space: pre-line;
+  z-index: 1;
+  font-family: 'Abel', sans-serif; /* Apply the Abel font */
+  font-weight: bold;
+}
+.news2
+{
+  margin-top: 22px;
+  text-align: center;
+  font-size: 22px;
+  color: #737373;
+  white-space: pre-line;
+  z-index: 1;
+  font-family: 'Abel', sans-serif; /* Apply the Abel font */
+  font-weight: bold;
+}
+.news3
+{
+  margin-bottom: 22px;
+  text-align: center;
+  font-size: 22px;
+  color: #737373;
+  white-space: pre-line;
+  z-index: 1;
+  font-family: 'Abel', sans-serif; /* Apply the Abel font */
+  font-weight: bold;
+}
+/* .news1 
 {
     margin-top: 0px;
     text-align: center;
@@ -239,8 +270,8 @@ h2 {
     color: #737373;
     white-space: pre-line;
     z-index: 1;
-    font-family: 'Abel', sans-serif; /* Apply the Abel font */
-}
+    font-family: 'Abel', sans-serif;
+}*/
 @font-face {
   font-family: 'Abel';
   font-style: normal;
