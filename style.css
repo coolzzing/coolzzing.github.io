@@ -234,9 +234,10 @@ h2 {
 .news1 {
   text-align: center;
   font-size: 22px;
-  color: #EBE7DE;
+  color: #737373;
   white-space: pre-line;
   z-index: 1;
+  font-weight: bold;
   font-family: 'Abel', sans-serif; /* Apply the Abel font */
 }
 .news2
@@ -244,9 +245,10 @@ h2 {
   margin-top: 22px;
   text-align: center;
   font-size: 22px;
-  color: #EBE7DE;
+  color: #737373;
   white-space: pre-line;
   z-index: 1;
+  font-weight: bold;
   font-family: 'Abel', sans-serif; /* Apply the Abel font */
 }
 .news3
@@ -254,9 +256,10 @@ h2 {
   margin-bottom: 22px;
   text-align: center;
   font-size: 22px;
-  color: #EBE7DE;
+  color: #737373;
   white-space: pre-line;
   z-index: 1;
+  font-weight: bold;
   font-family: 'Abel', sans-serif; /* Apply the Abel font */
 }
 /* .news1 
