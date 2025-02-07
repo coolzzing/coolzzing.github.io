@@ -234,33 +234,30 @@ h2 {
 .news1 {
   text-align: center;
   font-size: 22px;
-  color: #737373;
+  color: #11b2f7;
   white-space: pre-line;
   z-index: 1;
   font-family: 'Abel', sans-serif; /* Apply the Abel font */
-  font-weight: bold;
 }
 .news2
 {
   margin-top: 22px;
   text-align: center;
   font-size: 22px;
-  color: #737373;
+  color: #11b2f7;
   white-space: pre-line;
   z-index: 1;
   font-family: 'Abel', sans-serif; /* Apply the Abel font */
-  font-weight: bold;
 }
 .news3
 {
   margin-bottom: 22px;
   text-align: center;
   font-size: 22px;
-  color: #737373;
+  color: #11b2f7;
   white-space: pre-line;
   z-index: 1;
   font-family: 'Abel', sans-serif; /* Apply the Abel font */
-  font-weight: bold;
 }
 /* .news1 
 {
