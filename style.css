@@ -17,7 +17,8 @@
   -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
   will-change: opacity, transform;
   transition: all 0.5s cubic-bezier(0.23, 1, 0.32, 1);
-  /* border: 1px solid black; */
+  border: 16px solid #e0e0e0;
+  box-sizing: border-box;
 }
 .m-p-g__thumbs-img.active {
   z-index: 50;
@@ -30,6 +31,7 @@
 }
 .m-p-g__thumbs-img:hover {
   filter: brightness(110%);
+  border-color: #888;
 }
 .m-p-g__fullscreen {
   position: fixed;
