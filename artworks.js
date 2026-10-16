@@ -1180,7 +1180,7 @@ window.ARTWORKS = {
   },
   "122": {
     "id": "122",
-    "title": "Ilwolobongdo in the_Dark",
+    "title": "Ilwolobongdo in the Dark",
     "theme": "blue",
     "year": "2025",
     "medium": "Powdered Pigments on Hanji (Korean Paper)",
