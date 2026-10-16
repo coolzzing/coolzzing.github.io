@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Smalls Collection Detail — SIHYEON PARK</title>
+<link rel="stylesheet" href="styles.css">
+</head>
+<body class="detail-body">
+<header class="site-header detail-header">
+  <button class="menu-button" aria-label="Open menu" aria-expanded="false">☰</button>
+  <a href="index.html" class="brand">SIHYEON PARK</a>
+  <a href="smalls_collection.html" class="view-artwork">BACK TO SMALLS</a>
+</header>
+<nav class="drawer" aria-hidden="true">
+  <button class="drawer-close" aria-label="Close menu">CLOSE</button>
+  <div class="drawer-links">
+    <div class="menu-group">
+      <button class="submenu-toggle" type="button" aria-expanded="false">
+        <span>Artwork</span><span class="submenu-mark">+</span>
+      </button>
+      <div class="submenu" aria-hidden="true">
+        <a href="artwork.html">Recent Artwork</a>
+        <a href="artwork.html?theme=red">Red</a>
+        <a href="artwork.html?theme=blue">Blue</a>
+        <a href="artwork.html?theme=black">Black</a>
+        <a href="artwork.html?theme=gold">Gold</a>
+        <a href="artwork.html?theme=white">White</a>
+      </div>
+    </div>
+    <a href="smalls_collection.html">Smalls Collection</a>
+    <a href="index.html#exhibition">Exhibition</a>
+    <a href="index.html#bio">Bio</a>
+    <a href="index.html#press">Media &amp; Press</a>
+    <a href="index.html#contact">Contact</a>
+    <a class="instagram" href="https://instagram.com/artist_sihyeonpark?igshid=NTc4MTIwNjQ2YQ==" target="_blank" rel="noreferrer">◎ Instagram</a>
+  </div>
+</nav>
+<main class="detail-layout smalls-detail-layout">
+  <section class="detail-image-panel"><img id="smalls-detail-image" alt="Smalls Collection item"></section>
+  <aside class="detail-side">
+    <div class="detail-info smalls-detail-info">
+      <p class="section-label" id="smalls-detail-category">ARTWORK PRINTS</p>
+      <h1 id="smalls-detail-title">Untitled No. 02</h1>
+      <div class="smalls-description" id="smalls-detail-description"></div>
+    </div>
+    <!--<form class="inquiry-form" action="https://docs.google.com/forms/d/e/1FAIpQLSfz-mkE204IaNHrEFgQSJeal2ZT3yxiCkTtmvPBRUlfY0KN0Q/formResponse" method="POST" target="inquiry_iframe" onsubmit="inquirySubmitted=true;">
+      <p class="section-label">INQUIRY</p>
+      <input type="hidden" name="entry.837930430" id="inquiry-artwork">
+      <label>Name<input type="text" name="entry.336849934" required></label>
+      <label>Phone Number<input type="tel" name="entry.728266838"></label>
+      <label>Email Address<input type="email" name="entry.893797114" required></label>
+      <label>Tell us more<textarea name="entry.766029228" rows="5" placeholder="I’m interested in this item..."></textarea></label>
+      <button type="submit">SEND INQUIRY</button>
+      <p class="inquiry-status" aria-live="polite"></p>
+    </form> -->
+    <!-- Stripe checkout is available for Artwork Prints and Print Goods. -->
+    <section class="smalls-purchase" id="smalls-purchase" hidden aria-label="Purchase this item">
+      <p class="section-label">PURCHASE</p>
+      <p class="smalls-shipping-note" id="smalls-shipping-note"></p>
+      <p class="smalls-policy-summary">Due to the delicate nature of our artwork prints and print goods, returns or exchanges for changes of mind are not accepted. Please report damaged, defective, or incorrect orders within 7 calendar days of delivery, whenever possible. This does not limit your rights under applicable law.</p>
+      <label class="smalls-policy-acknowledgment" for="smalls-policy-check">
+        <input type="checkbox" id="smalls-policy-check">
+        <span>I have read and understand the <a href="shipping-returns.html" target="_blank" rel="noopener noreferrer">Shipping &amp; Returns Policy</a>.</span>
+      </label>
+      <a id="smalls-buy-now" class="smalls-buy-now is-disabled" aria-disabled="true" tabindex="-1" target="_blank" rel="noopener noreferrer">BUY NOW</a>
+      <p class="smalls-international-note">For international orders or shipping questions, please use the inquiry form below to request availability and a quote.</p>
+    </section>
+    <form
+      class="inquiry-form"
+      id="smalls-inquiry-form"
+      method="POST"
+      target="inquiry_iframe"
+      onsubmit="inquirySubmitted=true;"
+    >
+      <p class="section-label">INQUIRY</p>
+      <input
+        type="hidden"
+        id="inquiry-artwork"
+        name="entry.1330799925"
+      >
+      <label>
+        Name
+        <input
+          type="text"
+          id="inquiry-name"
+          name="entry.1611009759"
+          required
+        >
+      </label>
+      <label>
+        Phone Number
+        <input
+          type="tel"
+          id="inquiry-phone"
+          name="entry.683800293"
+        >
+      </label>
+      <label>
+        Email Address
+        <input
+          type="email"
+          id="inquiry-email"
+          name="entry.1917891432"
+          required
+        >
+      </label>
+      <label>
+        Tell us more
+        <textarea
+          id="inquiry-message"
+          name="entry.1213731617"
+          rows="5"
+          placeholder="I'm interested in this item..."
+        ></textarea>
+      </label>
+      <button type="submit">SEND INQUIRY</button>
+      <p class="inquiry-status" aria-live="polite"></p>
+    </form>
+  </aside>
+</main>
+<iframe name="inquiry_iframe" id="inquiry_iframe" style="display:none;" onload="if(inquirySubmitted){inquirySuccess();}"></iframe>
+<script>
+let inquirySubmitted = false;
+function inquirySuccess() {
+  const status = document.querySelector('.inquiry-status');
+  if (status) status.textContent = 'Thank you. Your inquiry has been sent.';
+  inquirySubmitted = false;
+}
+</script>
+<script src="smalls_collection.js"></script>
+<script src="script.js"></script>
+<script>
+// Show checkout for any Smalls Collection item with a Stripe payment link.
+// Live Stripe links are configured in smalls_collection.js.
+document.addEventListener('DOMContentLoaded', function () {
+  const id = new URLSearchParams(window.location.search).get('id');
+  const product = window.SMALLS_COLLECTION && window.SMALLS_COLLECTION[id];
+  const purchase = document.getElementById('smalls-purchase');
+  const buy = document.getElementById('smalls-buy-now');
+  if (product && product.stripeLink) {
+    const policyCheck = document.getElementById('smalls-policy-check');
+    // Do not expose a clickable checkout URL until the customer acknowledges the policy.
+    const updateCheckout = function () {
+      if (policyCheck.checked) {
+        buy.href = product.stripeLink;
+        buy.classList.remove('is-disabled');
+        buy.removeAttribute('aria-disabled');
+        buy.removeAttribute('tabindex');
+      } else {
+        buy.removeAttribute('href');
+        buy.classList.add('is-disabled');
+        buy.setAttribute('aria-disabled', 'true');
+        buy.setAttribute('tabindex', '-1');
+      }
+    };
+    policyCheck.checked = false;
+    policyCheck.addEventListener('change', updateCheckout);
+    buy.addEventListener('click', function (event) {
+      if (!policyCheck.checked) event.preventDefault();
+    });
+    updateCheckout();
+    const shippingNote = document.getElementById('smalls-shipping-note');
+    if (shippingNote) {
+      if (Number.isFinite(product.shippingCost)) {
+        shippingNote.textContent = `$${product.shippingCost.toFixed(2)} flat-rate shipping within the United States only.`;
+      } else if (product.category === 'Artwork Prints') {
+        shippingNote.textContent = '$20.00 flat-rate shipping within the United States only.';
+      } else {
+        shippingNote.textContent = 'Shipping charges, if applicable, are shown at Stripe checkout.';
+      }
+    }
+    purchase.hidden = false;
+  }
+});
+</script>
+</body>
+</html>
