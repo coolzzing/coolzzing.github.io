@@ -592,3 +592,13 @@ if (smallsDetailImage && window.SMALLS_COLLECTION) {
   }
 
 }
+
+// Home page: switch to an opaque header as soon as the page scrolls.
+const homeHeader = document.querySelector('.home-header');
+if (homeHeader) {
+  const updateHomeHeader = () => {
+    homeHeader.classList.toggle('is-scrolled', window.scrollY > 8);
+  };
+  window.addEventListener('scroll', updateHomeHeader, { passive: true });
+  updateHomeHeader();
+}
