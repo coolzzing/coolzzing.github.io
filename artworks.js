@@ -912,7 +912,7 @@ window.ARTWORKS = {
     "size": "24 × 18 inch",
     "description": "",
     "image": "2025_007_A_Tree_under_the_Sun-2_24x18.jpg",
-    "availability": "available"
+    "availability": "sold"
   },
   "98": {
     "id": "98",
@@ -1044,7 +1044,7 @@ window.ARTWORKS = {
     "size": "10 × 10 inch",
     "description": "",
     "image": "2025_019_A Small Happiness-13_10x10.jpg",
-    "availability": "available"
+    "availability": "sold"
   },
   "110": {
     "id": "110",
@@ -1286,7 +1286,7 @@ window.ARTWORKS = {
     "size": "24 × 20 inch",
     "description": "",
     "image": "2026_003_Cactus_in_the_White-1_24x20.jpg",
-    "availability": "available"
+    "availability": "sold"
   },
   "132": {
     "id": "132",
@@ -1308,7 +1308,7 @@ window.ARTWORKS = {
     "size": "10 × 10 inch",
     "description": "",
     "image": "2026_005_A Small Happiness-19_10x10.jpg",
-    "availability": "available"
+    "availability": "sold"
   },
   "134": {
     "id": "134",
