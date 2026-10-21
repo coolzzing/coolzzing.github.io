@@ -1140,7 +1140,7 @@ window.ARTWORKS = {
     "theme": "blue",
     "year": "2025",
     "medium": "Powdered Pigments on Hanji (Korean Paper)",
-    "size": "10 × 10 inch",
+    "size": "48 × 36 inch",
     "description": "",
     "image": "2025_028_A_Tree in the Dark_10x10.jpg",
     "availability": "sold"
