@@ -1409,4 +1409,26 @@ window.ARTWORKS = {
     "image": "2026_014_California_Hwajeopdo-2_18x36.jpg",
     "availability": "available"
   },
+  "143": {
+    "id": "143",
+    "title": "Cactus in the Dark-12",
+    "theme": "blue",
+    "year": "2026",
+    "medium": "Powdered Pigments on Hanji (Korean Paper)",
+    "size": "20 × 30 inch",
+    "description": "",
+    "image": "2026_015_Cactus_in_the_Dark-12_20x30.jpg",
+    "availability": "available"
+  },
+  "144": {
+    "id": "144",
+    "title": "Cactus in the Dark-13",
+    "theme": "blue",
+    "year": "2026",
+    "medium": "Powdered Pigments on Hanji (Korean Paper)",
+    "size": "20 × 30 inch",
+    "description": "",
+    "image": "2026_016_Cactus_in_the_Dark-13_20x30.jpg",
+    "availability": "available"
+  },
 };
