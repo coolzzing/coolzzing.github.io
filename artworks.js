@@ -1431,4 +1431,26 @@ window.ARTWORKS = {
     "image": "2026_016_Cactus_in_the_Dark-13_20x30.jpg",
     "availability": "available"
   },
+  "145": {
+    "id": "145",
+    "title": "A Small Happiness-20",
+    "theme": "black",
+    "year": "2026",
+    "medium": "Powdered Pigments on Hanji (Korean Paper)",
+    "size": "10 × 10 inch",
+    "description": "",
+    "image": "2026_017_CA_Small_Happiness_20_10x10.jpg",
+    "availability": "available"
+  },
+  "146": {
+    "id": "146",
+    "title": "A Small Happiness-21",
+    "theme": "black",
+    "year": "2026",
+    "medium": "Powdered Pigments on Hanji (Korean Paper)",
+    "size": "10 × 10 inch",
+    "description": "",
+    "image": "2026_018_CA_Small_Happiness_21_10x10.jpg",
+    "availability": "available"
+  },
 };
