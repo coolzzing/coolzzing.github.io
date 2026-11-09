@@ -165,7 +165,7 @@ document.addEventListener('DOMContentLoaded', function () {
       if (Number.isFinite(product.shippingCost)) {
         shippingNote.textContent = `$${product.shippingCost.toFixed(2)} flat-rate shipping within the United States only.`;
       } else if (product.category === 'Artwork Prints') {
-        shippingNote.textContent = '$20.00 flat-rate shipping within the United States only.';
+        shippingNote.textContent = '$20.00 flat-rate shipping within the United States only.\nPlease contact us for International shipping rates.';
       } else {
         shippingNote.textContent = 'Shipping charges, if applicable, are shown at Stripe checkout.';
       }
