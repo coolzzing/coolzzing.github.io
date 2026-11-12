@@ -1418,7 +1418,7 @@ window.ARTWORKS = {
     "size": "20 × 30 inch",
     "description": "",
     "image": "2026_015_Cactus_in_the_Dark-12_20x30.jpg",
-    "availability": "available"
+    "availability": "sold"
   },
   "144": {
     "id": "144",
