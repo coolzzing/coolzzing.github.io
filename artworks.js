@@ -1209,7 +1209,7 @@ window.ARTWORKS = {
     "size": "10 × 10 inch",
     "description": "",
     "image": "2025_034_A Small Happiness-18_10x10.jpg",
-    "availability": "available"
+    "availability": "sold"
   },
   "125": {
     "id": "125",
@@ -1440,7 +1440,7 @@ window.ARTWORKS = {
     "size": "10 × 10 inch",
     "description": "",
     "image": "2026_017_CA_Small_Happiness_20_10x10.jpg",
-    "availability": "available"
+    "availability": "sold"
   },
   "146": {
     "id": "146",
@@ -1451,6 +1451,6 @@ window.ARTWORKS = {
     "size": "10 × 10 inch",
     "description": "",
     "image": "2026_018_CA_Small_Happiness_21_10x10.jpg",
-    "availability": "available"
+    "availability": "sold"
   },
 };
